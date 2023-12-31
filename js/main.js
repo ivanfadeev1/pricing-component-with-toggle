@@ -1,12 +1,12 @@
-let toggle = document.querySelector('.toggle__input');
-let prices = document.querySelectorAll('.card__price');
+const toggle = document.querySelector('.toggle__input');
+const prices = document.querySelectorAll('.card__price');
 
-for (let price of prices) {
+for (const price of prices) {
     price.textContent = price.dataset.monthly;
 }
 
 toggle.addEventListener('change', function() {
-    for (let price of prices) {
+    for (const price of prices) {
       if (toggle.checked) {
           price.textContent = price.dataset.monthly;
         } else {
