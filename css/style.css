@@ -44,15 +44,15 @@ body {
   background-repeat: no-repeat;
 }
 body::before {
-  content: '';
   position: absolute;
+  content: '';
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
   background-color: #F7F7FE;
-  opacity: 0;
   z-index: -10;
+  opacity: 0;
   animation: body 1s ease-in-out;
 }
 @media (max-width: 1280px) {
@@ -72,52 +72,84 @@ body::before {
   }
 }
 
+.visually-hidden {
+  position: absolute;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(1px, 1px, 1px, 1px);
+}
+
 .toggle {
-  display: inline-block;
+  padding: 0;
+  text-align: center;
+}
+.toggle__label {
+  font-size: 15px;
+  line-height: 28px;
+  color: #6E728E;
+  opacity: 0.5;
+}
+.toggle__wrapper {
   position: relative;
+  display: inline-block;
+  vertical-align: middle;
   width: 56px;
   height: 32px;
+  border-radius: 16px;
+  margin: 0 20px;
+  font-size: 0;
 }
 .toggle__input {
-  display: none;
+  position: relative;
+  width: 50%;
+  height: 100%;
+  z-index: 1;
+  opacity: 0;
+  cursor: pointer;
 }
-.toggle__slider {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-image: linear-gradient(to right bottom, #A2A7F0 -0.05%, #696EDD 100.05%);
-  border-radius: 28px;
-  transition: .4s;
+.toggle__input:focus ~ .toggle__switcher {
+  border: 2px solid #D0D5F6;
 }
-.toggle__slider::before {
-  content: '';
-  position: absolute;
-  height: 24px;
-  width: 24px;
-  left: 4px;
-  bottom: 4px;
-  background-color: #FFFFFF;
-  border-radius: 50%;
-  transition: .4s;
+.toggle__input:hover ~ .toggle__background::after {
+  opacity: 0.5;
 }
-.toggle::after {
-  content: '';
+.toggle__background {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
+  background-image: linear-gradient(to right bottom, #A2A7F0 -0.05%, #696EDD 100.05%);
+  border-radius: 16px;
+  transition: .4s;
+}
+.toggle__background::after {
+  position: absolute;
+  content: '';
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
   background-color: #FFFFFF;
+  border-radius: 16px;
   opacity: 0;
-  transition: opacity .3s;
+  transition: .3s;
 }
-.toggle:hover::after {
-  opacity: 0.5;
+.toggle__switcher {
+  position: absolute;
+  top: 4px;
+  right: 4px;
+  width: 24px;
+  height: 24px;
+  background-color: #FFFFFF;
+  border-radius: 50%;
+  z-index: 2;
+  transition: .4s;
 }
-.toggle__input:checked + .toggle__slider::before {
-  transform: translateX(24px);
+.toggle #annually:checked ~ .toggle__switcher {
+  right: 50%;
 }
 
 .card {
@@ -144,10 +176,10 @@ body::before {
 }
 .card__price-container .card__currency {
   position: absolute;
+  top: 50%;
+  left: 0;
   font-size: 40px;
   line-height: 49px;
-  left: 0;
-  top: 50%;
   transform: translateY(-50%);
 }
 .card__price-container .card__price {
@@ -168,27 +200,27 @@ body::before {
   padding: 13px 0 12px;
 }
 .card__features-list-item::before {
-  content: '';
   position: absolute;
+  content: '';
+  top: 0;
+  left: 0;
   width: 100%;
   height: 1px;
   background-color: #6E728E;
   opacity: 0.25;
-  top: 0;
-  left: 0;
 }
 .card__features-list-item:last-child {
   padding-bottom: 13px;
 }
 .card__features-list-item:last-child::after {
-  content: '';
   position: absolute;
+  content: '';
+  left: 0;
+  bottom: 0;
   width: 100%;
   height: 1px;
   background-color: #6E728E;
   opacity: 0.25;
-  bottom: 0;
-  left: 0;
 }
 .card__button {
   display: inline-block;
@@ -262,10 +294,14 @@ body::before {
 }
 
 .pricing {
-  padding-top: 71px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 40px 0;
 }
 .pricing__container {
-  max-width: 1098px;
+  width: 100%;
   padding: 0 24px;
   margin: 0 auto;
 }
@@ -277,22 +313,13 @@ body::before {
   margin-bottom: 40px;
   animation: title .8s ease-in-out;
 }
-.pricing__toggle-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 0 24px;
+.pricing__toggle {
   margin-bottom: 64px;
   animation: toggle 1s ease-in-out;
 }
-.pricing__toggle-container .pricing__toggle-text {
-  font-size: 15px;
-  line-height: 28px;
-  color: #6E728E;
-  opacity: 0.5;
-}
 .pricing__list {
   display: flex;
+  justify-content: center;
   align-items: center;
   padding: 0;
   margin: 0;
@@ -317,9 +344,9 @@ body::before {
 }
 @media (max-width: 768px) {
   .pricing {
-    padding: 64px 0 71px;
+    padding: 72px 0;
   }
-  .pricing__toggle-container {
+  .pricing__toggle {
     margin-bottom: 80px;
   }
   .pricing__list {

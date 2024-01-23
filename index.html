@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="icon" type="image/png" sizes="32x32" href="./img/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="img/favicon-32x32.png">
   <title>Pricing</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -17,17 +17,22 @@
     <section class="pricing">
       <div class="pricing__container">
         <h1 class="pricing__title">Our Pricing</h1>
-        <div class="pricing__toggle-container">
-          <p class="pricing__toggle-text">Annually</p>
-          <label class="toggle pricing__toggle">
-            <input class="toggle__input" type="checkbox" id="#" checked>
-            <span class="toggle__slider"></span>
-          </label>
-          <p class="pricing__toggle-text">Monthly</p>
-        </div>
+        <fieldset class="toggle pricing__toggle" role="radiogroup">
+          <legend class="toggle__legend visually-hidden">Toggle pricing rates</legend>
+          <div class="toggle__container">
+            <label class="toggle__label" for="annually">Annually</label>
+            <span class="toggle__wrapper">
+              <input class="toggle__input" type="radio" name="rate" id="annually">
+              <input class="toggle__input" type="radio" name="rate" id="monthly">
+              <span class="toggle__background" aria-hidden="true"></span>
+              <span class="toggle__switcher" aria-hidden="true"></span>
+            </span>
+            <label class="toggle__label" for="monthly">Monthly</label>
+          </div>
+        </fieldset>
         <div class="pricing__list">
           <div class="card pricing__card">
-            <h3 class="card__subtitle">Basic</h3>
+            <h2 class="card__subtitle">Basic</h2>
             <p class="card__price-container">
               <span class="card__currency">$</span>
               <span class="card__price" data-monthly="19.99" data-annually="199.99"></span>
@@ -40,7 +45,7 @@
             <a class="card__button" href="#">Learn more</a>
           </div>
           <div class="card pricing__card card--primary">
-            <h3 class="card__subtitle">Professional</h3>
+            <h2 class="card__subtitle">Professional</h2>
             <p class="card__price-container">
               <span class="card__currency">$</span>
               <span class="card__price" data-monthly="24.99" data-annually="249.99"></span>
@@ -53,7 +58,7 @@
             <a class="card__button" href="#">Learn more</a>
           </div>
           <div class="card pricing__card">
-            <h3 class="card__subtitle">Master</h3>
+            <h2 class="card__subtitle">Master</h2>
             <p class="card__price-container">
               <span class="card__currency">$</span>
               <span class="card__price" data-monthly="39.99" data-annually="399.99"></span>
